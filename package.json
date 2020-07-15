@@ -1,0 +1,22 @@
+{
+  "name": "ping_pong",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MustafaAushev/ping_pong.git"
+  },
+  "author": "MusAushev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MustafaAushev/ping_pong/issues"
+  },
+  "homepage": "https://github.com/MustafaAushev/ping_pong#readme",
+  "dependencies": {
+    "@types/node": "^14.0.23"
+  }
+}
