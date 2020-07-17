@@ -1,5 +1,16 @@
-import * as net from 'net';
-const server = net.createServer();
+import * as http from 'http';
+const server = http.createServer();
+
+server.on('upgrade', (req, socket) => {
+    console.log('upgrade');
+    if (req.headers['upgrade'] !== 'websocket') {
+        socket.end('HTTP/1.1 400 Bad Request');
+        return;
+    }
+    const responseHeaders = [ 'HTTP/1.1 101 Web Socket Protocol Handshake', 'Upgrade: WebSocket', 'Connection: Upgrade']; 
+    socket.write(responseHeaders.join('\r\n') + '\r\n\r\n');
+    socket.pipe(socket);
+});
 
 server.on('connection', (socket) => {
     console.log('connect');
@@ -20,6 +31,6 @@ server.on('error', (err) => {
     console.error(err);
 });
 
-server.listen({port: process.env['PORT']}, () => {
-    console.log('listening on', server.address());
+server.listen(process.env['PORT'], () => {
+    console.log(server.address())
 });
